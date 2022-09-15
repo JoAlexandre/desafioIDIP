@@ -1,0 +1,33 @@
+
+.form-control-input{
+    border-radius: 50px;
+    box-shadow: 0px 0px 5px 0px #00000026;
+    height: auto;
+    &-btn{
+        background-color: #006A5B;
+        color: #FFFFFF;
+        font-weight: 600 !important;
+    }
+    
+}
+
+input::placeholder {
+    
+    font: 12px;
+    font-weight: 300;
+    align-items: center;
+    
+    
+}
+button{
+    height: 100% !important; 
+    border: none;
+}
+
+.btn-filtros{
+    justify-content: space-between;
+    display: flex;
+    padding: 0px 55px;
+    align-items: center;
+}
+

@@ -1,0 +1,109 @@
+.encartes-sazonais-btn{
+    font-family: 'Poppins';
+    font-size: 14px;
+    background-color: transparent;
+    color: #C4C4C4;
+    border: none;
+
+    max-width: auto;
+    margin: auto;
+    justify-content: space-between;
+
+    &:hover{
+        background-color: transparent !important; 
+        color: black;
+        & svg{
+            filter: invert(1);
+        }
+    }
+}
+.bi-edited{
+    &::before{
+        line-height: unset;
+    }
+}
+.span-button-list{
+    width: 130px;
+    justify-content: space-between;
+    &-0{
+        @extend .span-button-list;
+        width: auto;
+    }
+    &-1{
+        width: 60px;
+        justify-content: space-between;
+
+    }
+    
+}
+
+.table-head-option{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    & label{
+        font-size: 10px;
+        font-weight: 600;
+        
+    }
+}
+.th-edited{
+    margin: auto;
+    & .form-control-table{
+        // min-width: 50px;
+        // max-width: 300px;
+    }
+}
+
+.status-ativado{
+    color:#006A5B;
+    
+    padding: 2px 20px;
+    background-color: #97CAC666 !important; 
+    border-radius: 20px;
+    text-align: center;
+}
+.status-desativado{
+    color: #FF0000FC;
+    padding: 2px 20px;
+    background-color: #FF000070;
+    border-radius: 10px;
+    text-align: center;
+}
+.card-table{
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px 0px #00000026;
+    margin: 10px 0 40px;
+    height: 320px;
+    overflow: hidden;
+    & .table-responsive{
+        height: 320px;
+
+     }
+    & .theada{
+        word-wrap: normal;
+        text-align: center;
+        background: #CBE4E3;
+        height: 50px;
+        position: sticky;
+        top: 0;
+        z-index: 5;
+    }
+    & tbody{
+        overflow: auto;
+    }
+    &-2{
+        @extend .card-table;
+        height: 640px;
+        & .table-responsive{
+            height: 640px;
+    
+         }
+    }
+}
+
+.tr-selected{
+    background-color: #F2F2F2;
+
+}

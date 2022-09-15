@@ -1,0 +1,32 @@
+.sidebar {
+    margin: 0;
+    position: fixed;
+    top: 55px;
+    bottom: 0;
+    left: 0;
+    min-width: 50px;
+    min-height: 100vh !important;
+    z-index: 100;
+    background-color: #F8F8F8;
+    
+}
+
+
+.nav{
+    display: block;
+    overflow: hidden;
+    
+}
+
+.nav-link{
+    border-left: 4px solid transparent;
+}
+.nav-link:is(.active){
+    border-left: 4px solid #006A5B;
+}
+// .active{
+//     border-left: solid transparent;
+//     background-color: #f2f2f2;
+
+// }
+
