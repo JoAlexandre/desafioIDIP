@@ -46,12 +46,33 @@ app.get('/get_encartes', (req, res) => {
         .catch(error => res.status(500).send({error}))
     
 })
+
 app.post('/get_list_produtos', (req, res) => {
     const filter = `AND nomeSazonalidade = '${req.body.sazonalName}'`
     const table = 'listaDeProdutos'
     db.getTable(table, filter)
         .then(response => res.status(200).send({response}))
         .catch(error => res.status(500).send({error}))
+    
+})
+app.post('/update_table_sazonal', (req, res) => {
+    const table = req.body.table
+    db.deleteTable('sazonalidade')
+    table.map(item => {
+        const filds = []
+        const values = []
+        Object.keys(item).forEach(key => {
+            filds.push(key)
+            values.push(`'${item[key]}'`)
+        })
+        // console.log(`(${filds.join(',')})`)
+        // console.log(`(${values.join(',')})`)
+        db.updateTable('sazonalidade', filds, values)
+    })
+    res.status(200).send(table)
+    // db.getTable(table, filter)
+    //     .then(response => res.status(200).send({response}))
+    //     .catch(error => res.status(500).send({error}))
     
 })
 

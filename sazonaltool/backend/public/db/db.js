@@ -43,8 +43,38 @@ async function insertInto(table, values){
     }
 }
 
+async function updateTable(table, filds, values){
+    const query = `
+    insert into ${table} 
+    (${filds})
+    values(${values})
+    `
+
+    try {
+        const [results, metadata] = await sequelize.query(query)
+        return results
+
+    } catch (error) {
+        throw error   
+    }
+}
+
+async function deleteTable(table){
+    const query = `delete from ${table}`
+
+    try {
+        const [results, metadata] = await sequelize.query(query)
+        return results
+
+    } catch (error) {
+        throw error   
+    }
+}
+
 module.exports = {
       connection
     , getTable
     , insertInto 
+    , updateTable
+    , deleteTable
 }
