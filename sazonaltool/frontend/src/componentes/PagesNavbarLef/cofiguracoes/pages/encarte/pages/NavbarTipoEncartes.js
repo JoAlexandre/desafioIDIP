@@ -12,27 +12,27 @@ export default function InfoEncartes(){
                                     PARA VOCÊ
                             </Nav.Item>
                         </NavLink>
-                        <NavLink to='produtos_mais_vendidos' className="nav-item-encartes">
+                        <NavLink to='produtos_mais_vendidos' className={({ isActive }) => isActive ? 'active nav-item-encartes' : 'nav-item-encartes'}>
                             <Nav.Item className="nav-item-encartes-item">
                                 PRODUTOS MAIS VENDIDOS
                             </Nav.Item>
                         </NavLink>
-                        <NavLink to='sazonal' className="nav-item-encartes">
+                        <NavLink to='sazonal' className={({ isActive }) => isActive ? 'active nav-item-encartes' : 'nav-item-encartes'}>
                             <Nav.Item className="nav-item-encartes-item">
                                 SAZONAL
                             </Nav.Item>
                         </NavLink>
-                        <NavLink to='nas_lojas' className="nav-item-encartes">
+                        <NavLink to='nas_lojas' className={({ isActive }) => isActive ? 'active nav-item-encartes' : 'nav-item-encartes'}>
                             <Nav.Item className="nav-item-encartes-item">
                                 NAS LOJAS
                             </Nav.Item>
                         </NavLink>
-                        <NavLink to='especiais' className="nav-item-encartes">
+                        <NavLink to='especiais' className={({ isActive }) => isActive ? 'active nav-item-encartes' : 'nav-item-encartes'}>
                             <Nav.Item className="nav-item-encartes-item">
                                 ESPECIAIS
                             </Nav.Item>
                         </NavLink>
-                        <NavLink to='novidades' className="nav-item-encartes">
+                        <NavLink to='novidades' className={({ isActive }) => isActive ? 'active nav-item-encartes' : 'nav-item-encartes'}>
                             <Nav.Item className="nav-item-encartes-item">
                                 NOVIDADES
                             </Nav.Item>

@@ -17,10 +17,29 @@ import Novidades from './componentes/PagesNavbarLef/cofiguracoes/pages/encarte/p
 import ParaVoce from './componentes/PagesNavbarLef/cofiguracoes/pages/encarte/pages/navbarTipoEncartes/paraVoce/ParaVoce'
 import ProdutosMaisVendidos from './componentes/PagesNavbarLef/cofiguracoes/pages/encarte/pages/navbarTipoEncartes/produtosMaisVendidos/ProdutosMaisVendidos'
 import Sazonal from './componentes/PagesNavbarLef/cofiguracoes/pages/encarte/pages/navbarTipoEncartes/sazonal/Sazonal'
+import { useState } from 'react'
+import { EncartesContext } from './Context/Context'
 function App() {
 
+  const [tableList, setTableList] = useState({
+    encartes: []
+  , productsList: {
+        loading: false
+      , data: []
+  }
+  , adicionarEncartes: {
+        nomeEncarte: ''
+      , statusSazonalidade: false
+      , descricao: ''
+  }
+  , userName: 'joao'
+  , sazonalSelected: []
+  , tempListProduct: []
+})
+
   return (
-    <>
+    
+    <EncartesContext.Provider value={{tableList, setTableList}}>
       <Routes>
         <Route 
         index
@@ -56,7 +75,7 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound404 />} />
       </Routes>
-    </>
+      </EncartesContext.Provider>
   );
 }
 

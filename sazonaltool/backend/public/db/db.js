@@ -28,10 +28,11 @@ async function getTable(tableName, filter = ''){
     }
 }
 
-async function insertInto(table, values){
+async function insertInto(table, filds, values){
     const query = `
     INSERT INTO 
     ${table} 
+    (${filds})
     values(${values});`
 
     try {
@@ -43,7 +44,8 @@ async function insertInto(table, values){
     }
 }
 
-async function updateTable(table, filds, values){
+/* função especifica para essa tabela, insiro todos os dados novos na tabela novamente */
+async function updateTableSazonalidade(table, filds, values){
     const query = `
     insert into ${table} 
     (${filds})
@@ -59,6 +61,21 @@ async function updateTable(table, filds, values){
     }
 }
 
+async function updateTable2(table, values, conditions){
+    const query = `
+    update ${table} 
+    ${values}
+    where 1 = 1 ${conditions}
+    `
+
+    try {
+        const [results, metadata] = await sequelize.query(query)
+        return results
+
+    } catch (error) {
+        throw error   
+    }
+}
 async function deleteTable(table){
     const query = `delete from ${table}`
 
@@ -75,6 +92,7 @@ module.exports = {
       connection
     , getTable
     , insertInto 
-    , updateTable
+    , updateTableSazonalidade
     , deleteTable
+    , updateTable2
 }

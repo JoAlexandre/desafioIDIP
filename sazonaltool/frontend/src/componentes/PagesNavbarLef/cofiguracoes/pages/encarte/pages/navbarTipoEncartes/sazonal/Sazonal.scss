@@ -17,11 +17,13 @@
         }
     }
 }
+
 .bi-edited{
     &::before{
         line-height: unset;
     }
 }
+
 .span-button-list{
     width: 130px;
     justify-content: space-between;
@@ -48,12 +50,9 @@
         
     }
 }
+
 .th-edited{
     margin: auto;
-    & .form-control-table{
-        // min-width: 50px;
-        // max-width: 300px;
-    }
 }
 
 .status-ativado{
@@ -64,6 +63,7 @@
     border-radius: 20px;
     text-align: center;
 }
+
 .status-desativado{
     color: #FF0000FC;
     padding: 2px 20px;
@@ -71,6 +71,7 @@
     border-radius: 10px;
     text-align: center;
 }
+
 .card-table{
     border-radius: 20px;
     box-shadow: 0px 0px 15px 0px #00000026;
@@ -104,6 +105,13 @@
 }
 
 .tr-selected{
+    background-color: #F2F2F2;
+    &-3{
+        background-color: #F2F2F2;
+    }
+
+}
+.tr-selected-2{
     background-color: #F2F2F2;
 
 }

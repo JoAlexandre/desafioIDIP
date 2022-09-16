@@ -48,13 +48,28 @@ app.get('/get_encartes', (req, res) => {
 })
 
 app.post('/get_list_produtos', (req, res) => {
-    const filter = `AND nomeSazonalidade = '${req.body.sazonalName}'`
+    const sazonalidades = req.body.sazonalName
+    let stringSazonalidades = ''
+    if(sazonalidades.length){
+        stringSazonalidades = sazonalidades
+            .reduce((prev, current, index)=>{
+                if(index == 0){
+                    return `AND nomeSazonalidade like '%[${current}]%' `
+                }else{
+                    return `${prev} OR nomeSazonalidade like '%[${current}]%' `
+                }
+            },'')
+    }else{
+        stringSazonalidades = `AND nomeSazonalidade like '%%'`
+    }
+
     const table = 'listaDeProdutos'
-    db.getTable(table, filter)
+    db.getTable(table, stringSazonalidades)
         .then(response => res.status(200).send({response}))
         .catch(error => res.status(500).send({error}))
     
 })
+
 app.post('/update_table_sazonal', (req, res) => {
     const table = req.body.table
     db.deleteTable('sazonalidade')
@@ -65,15 +80,33 @@ app.post('/update_table_sazonal', (req, res) => {
             filds.push(key)
             values.push(`'${item[key]}'`)
         })
-        // console.log(`(${filds.join(',')})`)
-        // console.log(`(${values.join(',')})`)
-        db.updateTable('sazonalidade', filds, values)
+        db.updateTableSazonalidade('sazonalidade', filds, values)
     })
     res.status(200).send(table)
-    // db.getTable(table, filter)
-    //     .then(response => res.status(200).send({response}))
-    //     .catch(error => res.status(500).send({error}))
     
+})
+
+app.post('/add_encarte', (req, res) => {
+    const newEncarte = [req.body.newEncarte]
+    const listToNewEncarte = req.body.listToNewEncarte
+    
+    newEncarte.map(item => {
+        const filds = []
+        const values = []
+        Object.keys(item).forEach(key => {
+            filds.push(key)
+            values.push(`'${item[key]}'`)
+        })
+        db.insertInto('sazonalidade', filds, values)
+    })
+    listToNewEncarte.map(item => {
+        db.updateTable2(
+            'listaDeProdutos'
+            , `set nomeSazonalidade = '${item.nomeSazonalidade}'`
+            , `AND id = ${item.id}`
+        )
+    })
+    res.status(200).send({response: 'ok'})
 })
 
 

@@ -3,12 +3,14 @@ import NavbarTop from "../narvbarTop/NavbarTop"
 import { useLocation } from "react-router";
 import MainSection from "../mainSection/MainSection";
 import Configuracoes from './cofiguracoes/NavbarRouter'
-
+import {EncartesContext} from '../../Context/Context'
+import { useContext } from "react";
 
 function PageTemplate({children}){
+    const {tableList} = useContext(EncartesContext)
     return(
         <>
-            <NavbarTop userName="José"/>
+            <NavbarTop userName={tableList.userName}/>
             <NavbarLeft/>
             <MainSection>
                 {children}

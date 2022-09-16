@@ -1,40 +1,65 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import {Col, Row, Form, Container} from 'react-bootstrap'
 import './Encarte.scss'
 import FormAddEncartesSazonal from './pages/FormAddEncartesSazonal'
 import InfoEncartes from './pages/NavbarTipoEncartes'
-import { EncartesContext } from './Context/Context'
+import { EncartesContext } from '../../../../../Context/Context'
 import axios from 'axios'
 
 export default function Encarte(){
     const [addVisible, setAddVisible] = useState(false)
-
-    const [tableList, setTableList] = useState({
-            encartes: []
-        , productsList: {
-                loading: false
-            , data: []
-        }
-    })
+    const {tableList, setTableList} = useContext(EncartesContext)
 
     const onClickHandlerAdd = () => {
+        setTableList(last => ({
+            ...last
+            , sazonalSelected: ''
+            }))
         setAddVisible(true)
     }
+
     const onClickHandlerCancelar = () => {
         window.location.reload()
     }
+
     const onClickHandlerSalvar = () => {
-        axios.post('http://localhost:8080/update_table_sazonal', {table: tableList.encartes})
+        if(!addVisible){
+                /* atualizar apenas a tabela sazonal editada */
+                axios.post('http://localhost:8080/update_table_sazonal', {table: tableList.encartes})
+                .then(response => {
+                    alert('Atualizado com Sucesso')
+                })
+                .catch(response => {
+                    alert('Erro')
+                })
+        }else{
+            const dados = {
+                newEncarte: tableList.adicionarEncartes
+                , listToNewEncarte: tableList.tempListProduct
+            }
+            if(!String(dados.newEncarte.nomeEncarte).length || !dados.listToNewEncarte.length){
+                alert("Adicione um nome ao novo encarte e os produtos")
+                return
+            }
+
+            /* para adicionar novos encartes */
+            axios.post('http://localhost:8080/add_encarte', dados)
             .then(response => {
-                alert('Atualizado com Sucesso')
-                console.log(response)
+                alert('Encarte Criado com Sucesso')
+                setTableList(last =>({...last, tempListProduct: []}))
+                window.location.reload()
             })
             .catch(response => {
                 alert('Erro')
             })
+            
+        }
     }
+
+    useEffect(() => {
+    }, [tableList, setTableList])
+
     return (
-        <EncartesContext.Provider value={{tableList, setTableList}}>
             <section className="main-menu">
                 <h2>Encartes</h2>
                 
@@ -83,12 +108,28 @@ export default function Encarte(){
                             <button type="button" className='form-control form-control-input form-control-input-btn ' onClick={onClickHandlerCancelar}>Cancelar</button>   
                         </Col>
                         <Col sm={3}>
-                            <button type="button" className='form-control form-control-input form-control-input-btn ' onClick={onClickHandlerSalvar}>Salvar</button>   
+                            {
+                                tableList.saveBlocked ? 
+                                <button 
+                                    type="button" 
+                                    className='form-control form-control-input form-control-input-btn ' 
+                                    onClick={onClickHandlerSalvar} disabled>Salvar</button>   
+                                :
+                                    <button 
+                                        type="button" 
+                                        className='form-control form-control-input form-control-input-btn ' 
+                                        onClick={onClickHandlerSalvar} >Salvar</button>   
+                                
+                            }
+                            {/* <button 
+                                type="button" 
+                                className='form-control form-control-input form-control-input-btn ' 
+                                onClick={onClickHandlerSalvar}
+                                >Salvar</button>    */}
                         </Col>
                     </Row>
                 </Container>
             </section>
-        </EncartesContext.Provider>
 
     )
 }

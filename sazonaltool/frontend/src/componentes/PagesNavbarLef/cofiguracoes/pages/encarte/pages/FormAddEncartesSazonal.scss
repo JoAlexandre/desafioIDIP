@@ -1,0 +1,61 @@
+.section-info-user{
+    display: flex;
+    flex-direction: row;
+    
+    & .div-info-user{
+        display: flex;
+        flex-direction: column;
+        margin: 0 20px;
+    }
+}
+.section-data-execucao{
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px solid #C4C4C4
+}
+.form-label-title{
+    font-size: 14px;
+    font-weight: bold !important;
+}
+
+.encarte-ativo{
+    
+    padding: 1px 20px;
+    border-radius: 10px;
+    background: #97CAC666;
+}
+.btn-adcionar{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    & span{
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        min-width: 150px;
+    }
+    &-remover{
+        @extend .btn-adcionar;
+        background: #FF0000FC;
+
+
+    }
+}
+.min-width-th{
+    min-width: max-content;
+}
+
+.tooltip-overlay{
+    position: relative;
+}
+
+.has-encarte{
+    position: absolute;
+    z-index: 10;
+    background-color: rgba(255, 0, 0, 0.418);
+    color: white;
+    top: -21px;
+    font-size: 0.8rem;
+    border-radius: 10px;
+    padding: 0 2px;
+}
