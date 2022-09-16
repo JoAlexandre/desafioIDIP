@@ -15,9 +15,9 @@ O servidor sera iniciado na porta 8080
 
 Uma janela sera aberta em seu navegador com a url 'http://localhost:3000'
 
-### Testando as Funcionalidades
+### `Testando as Funcionalidades`
 
-### Regras de Negócio 
+### `Regras de Negócio` 
 ### RN01 - Será exibido uma lista com as sazonalidades cadastradas 
 ### RN02 - Ao clicar em uma sazonalidade é aberto uma lista que exibirá os produtos cadastrados nessa sazonalidade. Se selecionado mais de uma sazonalidade os produtos de ambas devem ser exibidos. 
 ### RN03 - Será permitido editar, exclusão lógica, exportar PDF e .CSV 
