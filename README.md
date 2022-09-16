@@ -3,13 +3,13 @@
 Nele ha duas pastas indicadas: "Backend e Frontend"
 
 ### `Iniciar o projeto Backend`
-    Abra um terminal no computador e digite 'cd C:\sazonaltool\backend'
+    Abra um terminal no computador e digite 'cd .\sazonaltool\backend'
     digite `npm install`
     digite `npm start`
 O servidor sera iniciado na porta 8080
 
 ### `Passo 2: Iniciar o projeto FrontEnd`
-    Abra um terminal no computador e digite 'cd C:\sazonaltool\frontend'
+    Abra um terminal no computador e digite 'cd .\sazonaltool\frontend'
     Digite `npm install`
     Digite `npm start`
 
