@@ -77,7 +77,7 @@ async function updateTable2(table, values, conditions){
     }
 }
 async function deleteTable(table){
-    const query = `delete from ${table}`
+    const query = `SET SQL_SAFE_UPDATES = 0; delete from ${table}`
 
     try {
         const [results, metadata] = await sequelize.query(query)
